@@ -3,8 +3,11 @@ import ComponentLibrary from "./ComponentLibrary";
 import LivePreview from "./LivePreview";
 import { saveConfig, loadConfig } from "../utils/api";
 import auth from "../firebase/firebase.config";
+import { FaAngleDoubleUp } from "react-icons/fa";
+import { FaAngleDoubleDown } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-export default function BuilderEditor() {
+function BuilderEditor() {
   const [components, setComponents] = useState(["Navbar", "Hero"]);
   const [userId, setUserId] = useState(null);
 
@@ -75,21 +78,21 @@ export default function BuilderEditor() {
                 <div className="space-x-1">
                   <button
                     onClick={() => moveUp(i)}
-                    className="px-2 py-1 bg-gray-200 rounded"
+                    className="px-2 py-2 hover:bg-white hover:text-black cursor-pointer  bg-black border-whtie border rounded"
                   >
-                    ↑
+                    <FaAngleDoubleUp />
                   </button>
                   <button
                     onClick={() => moveDown(i)}
-                    className="px-2 py-1 bg-gray-200 rounded"
+                    className="px-2 py-2 hover:bg-white hover:text-black cursor-pointer bg-black border-whtie border rounded"
                   >
-                    ↓
+                    <FaAngleDoubleDown />
                   </button>
                   <button
                     onClick={() => remove(i)}
-                    className="px-2 py-1 bg-red-500 text-white rounded"
+                    className="px-2 py-2 cursor-pointer  bg-red-500 text-white hover:bg-black border hover:border hover:text-red-500 rounded"
                   >
-                    Del
+                    <FaRegTrashAlt />
                   </button>
                 </div>
               </li>
@@ -98,7 +101,7 @@ export default function BuilderEditor() {
         </div>
         <div className="pt-2 flex justify-end">
           <button
-            className="px-4 py-2 bg-blue-600 text-white rounded"
+            className="px-4 py-2 bg-black border text-white rounded hover:bg-white hover:text-black font-bold cursor-pointer"
             onClick={handleSave}
           >
             Save
@@ -114,3 +117,5 @@ export default function BuilderEditor() {
     </div>
   );
 }
+
+export default BuilderEditor;

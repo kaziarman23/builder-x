@@ -25,10 +25,10 @@ function ComponentLibrary({ onAdd }) {
               <div className="text-sm text-gray-500">{c.example}</div>
             </div>
             <button
-              className="px-3 py-1 bg-indigo-600 text-white rounded"
+              className="px-3 py-1 bg-indigo-600 text-white rounded-lg cursor-pointer"
               onClick={() => onAdd(c.key)}
             >
-              Add
+              ADD
             </button>
           </li>
         ))}

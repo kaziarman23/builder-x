@@ -13,7 +13,9 @@ function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/">
-            <h1 className="text-2xl font-bold">Folify</h1>
+            <h1 className="text-2xl font-bold hover:text-indigo-600">
+              Builder X
+            </h1>
           </Link>
 
           {/* Desktop Menu */}

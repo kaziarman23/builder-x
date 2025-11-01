@@ -16,7 +16,9 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-start space-y-6 md:space-y-0">
           {/* Logo / Brand with description */}
           <div className="md:w-1/3">
-            <div className="text-white text-2xl font-bold">Folify</div>
+            <div className="text-white text-2xl font-bold hover:text-indigo-600">
+              Builder X
+            </div>
             <p className="mt-2 text-gray-400">
               Folify is your go-to platform for modern web solutions, creative
               ideas, and innovative designs.
@@ -55,25 +57,25 @@ function Footer() {
           <div className="flex gap-4">
             <button
               onClick={toastInvalidLink}
-              className="hover:text-white transition cursor-pointer"
+              className="hover:text-indigo-600 transition cursor-pointer"
             >
               <FaFacebookF />
             </button>
             <button
               onClick={toastInvalidLink}
-              className="hover:text-white transition cursor-pointer"
+              className="hover:text-indigo-600 transition cursor-pointer"
             >
               <FaTwitter />
             </button>
             <button
               onClick={toastInvalidLink}
-              className="hover:text-white transition cursor-pointer"
+              className="hover:text-indigo-600 transition cursor-pointer"
             >
               <FaInstagram />
             </button>
             <button
               onClick={toastInvalidLink}
-              className="hover:text-white transition cursor-pointer"
+              className="hover:text-indigo-600 transition cursor-pointer"
             >
               <FaLinkedinIn />
             </button>
