@@ -1,6 +1,5 @@
-import React from "react";
 import { useForm } from "react-hook-form";
-import { BiUser, BiLock, BiCheckCircle } from "react-icons/bi";
+import { BiCheckCircle } from "react-icons/bi";
 
 const Login = () => {
   const {

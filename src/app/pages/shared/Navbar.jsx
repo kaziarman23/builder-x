@@ -26,9 +26,6 @@ function Navbar() {
             <a href="/about" className="hover:text-indigo-600 transition">
               About
             </a>
-            <a href="/services" className="hover:text-indigo-600 transition">
-              Services
-            </a>
             <a href="/register" className="hover:text-indigo-600 transition">
               Register
             </a>
@@ -51,12 +48,6 @@ function Navbar() {
           </a>
           <a href="/about" className="block hover:text-indigo-600 transition">
             About
-          </a>
-          <a
-            href="/services"
-            className="block hover:text-indigo-600 transition"
-          >
-            Services
           </a>
           <a href="/contact" className="block hover:text-indigo-600 transition">
             Contact

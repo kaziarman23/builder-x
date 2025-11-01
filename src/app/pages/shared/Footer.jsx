@@ -34,9 +34,6 @@ function Footer() {
               <a href="/about" className="hover:text-indigo-600 transition">
                 About
               </a>
-              <a href="/services" className="hover:text-indigo-600 transition">
-                Services
-              </a>
               <a href="/register" className="hover:text-indigo-600 transition">
                 Register
               </a>

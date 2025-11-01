@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../../../firebase/firebase.config";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { BiCheckCircle, BiUserPlus } from "react-icons/bi";
+import { BiCheckCircle } from "react-icons/bi";
 
 function Register() {
   const {
@@ -30,10 +30,7 @@ function Register() {
       <div className="flex flex-col md:flex-row max-w-6xl">
         {/* Left Hero Section */}
         <div className="hidden md:flex md:w-1/2 bg-indigo-700 p-5 flex-col justify-center text-white rounded-tl-2xl rounded-bl-2xl">
-          <BiUserPlus
-            className="h-10 w-10 text-indigo-200 mb-6"
-            strokeWidth={1.5}
-          />
+          
           <h2 className="text-4xl font-extrabold mb-4 leading-tight">
             Join Our Builder X Club.
           </h2>

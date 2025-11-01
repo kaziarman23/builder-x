@@ -90,7 +90,7 @@ function BuilderEditor() {
                   </button>
                   <button
                     onClick={() => remove(i)}
-                    className="px-2 py-2 cursor-pointer  bg-red-500 text-white hover:bg-black border hover:border hover:text-red-500 rounded"
+                    className="px-2 py-2 cursor-pointer  hover:bg-red-500 hover:text-white bg-black border hover:border-red-500 text-red-500 rounded"
                   >
                     <FaRegTrashAlt />
                   </button>
