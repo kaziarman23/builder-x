@@ -8,8 +8,8 @@ function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md fixed w-full z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-gray-900 text-white shadow-md block w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/">
@@ -27,8 +27,8 @@ function Navbar() {
             <a href="/services" className="hover:text-gray-300 transition">
               Services
             </a>
-            <a href="/contact" className="hover:text-gray-300 transition">
-              Contact
+            <a href="/register" className="hover:text-gray-300 transition">
+              Register
             </a>
           </div>
 
