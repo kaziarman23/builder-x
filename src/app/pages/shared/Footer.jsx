@@ -10,7 +10,7 @@ function Footer() {
   const { toastInvalidLink } = toasts;
 
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-10 pb-6">
+    <footer className="bg-black text-gray-300 border-t border-white pt-10 pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top section: Logo + Links */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-start space-y-6 md:space-y-0">
@@ -26,17 +26,17 @@ function Footer() {
           {/* Navigation Links */}
           <div className="md:w-2/3 flex flex-col items-end">
             <div className="flex flex-col md:flex-row gap-6 mb-4 md:mb-0">
-              <a href="/" className="hover:text-white transition">
+              <a href="/" className="hover:text-indigo-600 transition">
                 Home
               </a>
-              <a href="/about" className="hover:text-white transition">
+              <a href="/about" className="hover:text-indigo-600 transition">
                 About
               </a>
-              <a href="/services" className="hover:text-white transition">
+              <a href="/services" className="hover:text-indigo-600 transition">
                 Services
               </a>
-              <a href="/contact" className="hover:text-white transition">
-                Contact
+              <a href="/register" className="hover:text-indigo-600 transition">
+                Register
               </a>
             </div>
           </div>

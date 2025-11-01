@@ -26,14 +26,14 @@ function Register() {
 
   return (
     <div className="flex justify-center items-center min-h-[80vh]">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+      <div className="w-full max-w-md p-6 bg-black text-white rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-indigo-600 mb-6 text-center">
           Register
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Name */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Name</label>
+            <label className="block text-whtie font-medium mb-1">Name</label>
             <input
               type="text"
               placeholder="Your Name"
@@ -47,9 +47,7 @@ function Register() {
 
           {/* Email */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Email
-            </label>
+            <label className="block text-whtie font-medium mb-1">Email</label>
             <input
               type="email"
               placeholder="Email"
@@ -65,7 +63,7 @@ function Register() {
 
           {/* Password */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block text-whtie font-medium mb-1">
               Password
             </label>
             <input
@@ -95,7 +93,7 @@ function Register() {
           </button>
         </form>
         <p className="mt-4 text-sm text-gray-600 text-center">
-          Already have an account?{" "}
+          Already have an account?{"  "}
           <a href="/login" className="text-indigo-600 hover:underline">
             Login
           </a>

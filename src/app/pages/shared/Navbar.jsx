@@ -8,7 +8,7 @@ function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md block w-full">
+    <nav className="bg-black text-white border-b border-white shadow-md block w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -18,16 +18,16 @@ function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
-            <a href="/" className="hover:text-gray-300 transition">
+            <a href="/" className="hover:text-indigo-600 transition">
               Home
             </a>
-            <a href="/about" className="hover:text-gray-300 transition">
+            <a href="/about" className="hover:text-indigo-600 transition">
               About
             </a>
-            <a href="/services" className="hover:text-gray-300 transition">
+            <a href="/services" className="hover:text-indigo-600 transition">
               Services
             </a>
-            <a href="/register" className="hover:text-gray-300 transition">
+            <a href="/register" className="hover:text-indigo-600 transition">
               Register
             </a>
           </div>
@@ -43,17 +43,20 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-800 px-4 py-4 space-y-2">
-          <a href="/" className="block hover:text-white transition">
+        <div className="md:hidden bg-black text-white px-4 py-4 space-y-2">
+          <a href="/" className="block hover:text-indigo-600 transition">
             Home
           </a>
-          <a href="/about" className="block hover:text-white transition">
+          <a href="/about" className="block hover:text-indigo-600 transition">
             About
           </a>
-          <a href="/services" className="block hover:text-white transition">
+          <a
+            href="/services"
+            className="block hover:text-indigo-600 transition"
+          >
             Services
           </a>
-          <a href="/contact" className="block hover:text-white transition">
+          <a href="/contact" className="block hover:text-indigo-600 transition">
             Contact
           </a>
         </div>

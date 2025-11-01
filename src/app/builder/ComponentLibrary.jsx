@@ -18,7 +18,7 @@ function ComponentLibrary({ onAdd }) {
         {COMPONENTS.map((c) => (
           <li
             key={c.key}
-            className="p-2 border rounded flex justify-between items-center"
+            className="p-2 border rounded-lg flex justify-between items-center"
           >
             <div>
               <div className="font-medium">{c.title}</div>

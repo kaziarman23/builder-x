@@ -59,10 +59,10 @@ export default function BuilderEditor() {
 
   return (
     <div className="h-full grid grid-cols-3 gap-4 p-4">
-      <div className="col-span-1 border rounded overflow-auto">
+      <div className="col-span-1 border rounded-lg overflow-auto">
         <ComponentLibrary onAdd={add} />
       </div>
-      <div className="col-span-2 border rounded p-2 flex flex-col">
+      <div className="col-span-2 border rounded-lg p-2 flex flex-col">
         <div className="flex-1 overflow-auto">
           <h3 className="font-semibold mb-2">Page Structure</h3>
           <ul className="space-y-2">
@@ -105,7 +105,7 @@ export default function BuilderEditor() {
           </button>
         </div>
       </div>
-      <div className="col-span-3 border rounded p-2">
+      <div className="col-span-3 border rounded-lg p-2">
         <h3 className="font-semibold mb-2">Live Preview</h3>
         <div style={{ height: "70vh" }}>
           <LivePreview components={components} />
