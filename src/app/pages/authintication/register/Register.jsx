@@ -1,27 +1,58 @@
 import { useForm } from "react-hook-form";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import auth from "../../../firebase/firebase.config";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { BiCheckCircle } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { useAddUserMutation } from "../../../redux/features/api/usersApi";
+import { createUser } from "../../../redux/features/userSlice";
+import { useState } from "react";
 
 function Register() {
+  // states
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // RTK Querys
+  const [addUser] = useAddUserMutation();
+
+  // Hook Form
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
-  const navigate = useNavigate();
+
+  // Form Submit
 
   const onSubmit = async (data) => {
+    setLoading(true);
+    const userData = {
+      userName: data.name,
+      userEmail: data.email,
+      userPassword: data.password,
+    };
+
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-      toast.success("Registration successful!");
+      const result = await dispatch(createUser(userData)).unwrap();
+      console.log(result);
+
+      // Save to database
+      await addUser({
+        userName: data.name,
+        userEmail: data.email,
+      });
+
+      toast.success("Registration Successful! Welcome to BuilderX!");
       reset();
       navigate("/");
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error:", error);
+      toast.error(error.message || "Registration failed. Please try again.");
+      reset();
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,7 +61,6 @@ function Register() {
       <div className="flex flex-col md:flex-row max-w-6xl">
         {/* Left Hero Section */}
         <div className="hidden md:flex md:w-1/2 bg-indigo-700 p-5 flex-col justify-center text-white rounded-tl-2xl rounded-bl-2xl">
-          
           <h2 className="text-4xl font-extrabold mb-4 leading-tight">
             Join Our Builder X Club.
           </h2>
@@ -125,9 +155,10 @@ function Register() {
 
             <button
               type="submit"
+              disabled={loading}
               className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition cursor-pointer"
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
 
