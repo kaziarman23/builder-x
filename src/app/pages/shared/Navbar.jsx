@@ -48,6 +48,11 @@ function Navbar() {
                 About
               </button>
             </Link>
+            <Link to="/mySites">
+              <button className="px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+                Sites
+              </button>
+            </Link>
             {userEmail ? (
               <button
                 onClick={handleLogout}
@@ -86,7 +91,11 @@ function Navbar() {
               About
             </button>
           </Link>
-
+          <Link to="/mySites">
+            <button className="px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+              Sites
+            </button>
+          </Link>
           {userEmail ? (
             <button
               onClick={handleLogout}

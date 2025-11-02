@@ -1,70 +1,82 @@
 import { useState, useEffect } from "react";
 import ComponentLibrary from "./ComponentLibrary";
 import LivePreview from "./LivePreview";
-import { saveConfig, loadConfig } from "../utils/api";
-import auth from "../firebase/firebase.config";
-import { FaAngleDoubleUp } from "react-icons/fa";
-import { FaAngleDoubleDown } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
+import {
+  FaAngleDoubleUp,
+  FaAngleDoubleDown,
+  FaRegTrashAlt,
+} from "react-icons/fa";
+import { useSelector } from "react-redux";
+import {
+  useGetUserConfigQuery,
+  useSaveUserConfigMutation,
+} from "../redux/features/api/configApi";
+import toast from "react-hot-toast";
 
 function BuilderEditor() {
   const [components, setComponents] = useState(["Navbar", "Hero"]);
-  const [userId, setUserId] = useState(null);
+  const { userEmail } = useSelector((state) => state.userSlice);
+
+  // RTK Query hooks
+  const { data: userConfig, refetch } = useGetUserConfigQuery(userEmail);
+  const [saveUserConfig, { isLoading: saving }] = useSaveUserConfigMutation();
 
   useEffect(() => {
-    const unsub = auth.onAuthStateChanged(async (u) => {
-      if (u) {
-        setUserId(u.uid);
-        try {
-          const r = await loadConfig(u.uid);
-          if (r.data?.config?.components)
-            setComponents(r.data.config.components);
-        } catch (error) {
-          console.log(error);
-        }
-      } else setUserId(null);
-    });
-    return () => unsub();
-  }, []);
+    if (userConfig?.config?.components) {
+      setComponents(userConfig.config.components);
+    }
+  }, [userConfig]);
 
-  function add(c) {
-    setComponents((s) => [...s, c]);
-  }
-  function remove(idx) {
-    setComponents((s) => s.filter((_, i) => i !== idx));
-  }
-  function moveUp(idx) {
+  const add = (c) => setComponents((prev) => [...prev, c]);
+  const remove = (idx) =>
+    setComponents((prev) => prev.filter((_, i) => i !== idx));
+
+  // Sorry this two functions(moveUp, moveDown) are written with ChatGPT.
+  const moveUp = (idx) => {
     if (idx === 0) return;
-    setComponents((s) => {
-      const copy = [...s];
+    setComponents((prev) => {
+      const copy = [...prev];
       [copy[idx - 1], copy[idx]] = [copy[idx], copy[idx - 1]];
       return copy;
     });
-  }
-  function moveDown(idx) {
-    setComponents((s) => {
-      if (idx === s.length - 1) return s;
-      const copy = [...s];
+  };
+
+  const moveDown = (idx) => {
+    setComponents((prev) => {
+      if (idx === prev.length - 1) return prev;
+      const copy = [...prev];
       [copy[idx + 1], copy[idx]] = [copy[idx], copy[idx + 1]];
       return copy;
     });
-  }
+  };
 
-  async function handleSave() {
-    if (!userId) {
-      alert("Login to save");
+  const handleSave = async () => {
+    if (!userEmail) {
+      toast.error("Please log in to save your layout.");
       return;
     }
-    const token = await auth.currentUser?.getIdToken();
-    await saveConfig(userId, { components }, token);
-    alert("Saved");
-  }
+
+    try {
+      await saveUserConfig({
+        userEmail,
+        config: { components },
+      }).unwrap();
+      toast.success("Your configuration has been saved successfully!");
+      refetch();
+    } catch (error) {
+      console.log("Error saving config:", error);
+      toast.error("Failed to save configuration. Please try again.");
+    }
+  };
 
   return (
     <div className="h-full grid grid-cols-3 gap-4 p-4">
+      {/* Sidebar */}
       <div className="col-span-1 border rounded-lg overflow-auto">
         <ComponentLibrary onAdd={add} />
       </div>
+
+      {/* Page structure panel */}
       <div className="col-span-2 border rounded-lg p-2 flex flex-col">
         <div className="flex-1 overflow-auto">
           <h3 className="font-semibold mb-2">Page Structure</h3>
@@ -75,22 +87,22 @@ function BuilderEditor() {
                 className="p-2 border rounded flex justify-between items-center"
               >
                 <div>{c}</div>
-                <div className="space-x-1">
+                <div className="space-x-1 flex">
                   <button
                     onClick={() => moveUp(i)}
-                    className="px-2 py-2 hover:bg-white hover:text-black cursor-pointer  bg-black border-whtie border rounded"
+                    className="px-2 py-2 bg-black border border-white text-white rounded hover:bg-white hover:text-black cursor-pointer"
                   >
                     <FaAngleDoubleUp />
                   </button>
                   <button
                     onClick={() => moveDown(i)}
-                    className="px-2 py-2 hover:bg-white hover:text-black cursor-pointer bg-black border-whtie border rounded"
+                    className="px-2 py-2 bg-black border border-white text-white rounded hover:bg-white hover:text-black cursor-pointer"
                   >
                     <FaAngleDoubleDown />
                   </button>
                   <button
                     onClick={() => remove(i)}
-                    className="px-2 py-2 cursor-pointer  hover:bg-red-500 hover:text-white bg-black border hover:border-red-500 text-red-500 rounded"
+                    className="px-2 py-2 bg-black border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white cursor-pointer"
                   >
                     <FaRegTrashAlt />
                   </button>
@@ -99,15 +111,20 @@ function BuilderEditor() {
             ))}
           </ul>
         </div>
+
+        {/* Save button */}
         <div className="pt-2 flex justify-end">
           <button
             className="px-4 py-2 bg-black border text-white rounded hover:bg-white hover:text-black font-bold cursor-pointer"
             onClick={handleSave}
+            disabled={saving}
           >
-            Save
+            {saving ? "Saving..." : "Save"}
           </button>
         </div>
       </div>
+
+      {/* Live Preview */}
       <div className="col-span-3 border rounded-lg p-2">
         <h3 className="font-semibold mb-2">Live Preview</h3>
         <div style={{ height: "70vh" }}>
