@@ -17,13 +17,14 @@ function BuilderEditor() {
   const [components, setComponents] = useState(["Navbar", "Hero"]);
   const { userEmail } = useSelector((state) => state.userSlice);
 
-  // RTK Query hooks
   const { data: userConfig, refetch } = useGetUserConfigQuery(userEmail);
   const [saveUserConfig, { isLoading: saving }] = useSaveUserConfigMutation();
 
+  // Load the last saved page if exists
   useEffect(() => {
-    if (userConfig?.config?.components) {
-      setComponents(userConfig.config.components);
+    if (Array.isArray(userConfig?.config) && userConfig.config.length > 0) {
+      const lastPage = userConfig.config[userConfig.config.length - 1];
+      if (lastPage?.components) setComponents(lastPage.components);
     }
   }, [userConfig]);
 
@@ -31,7 +32,6 @@ function BuilderEditor() {
   const remove = (idx) =>
     setComponents((prev) => prev.filter((_, i) => i !== idx));
 
-  // Sorry this two functions(moveUp, moveDown) are written with ChatGPT.
   const moveUp = (idx) => {
     if (idx === 0) return;
     setComponents((prev) => {
@@ -57,15 +57,17 @@ function BuilderEditor() {
     }
 
     try {
-      await saveUserConfig({
-        userEmail,
-        config: { components },
-      }).unwrap();
-      toast.success("Your configuration has been saved successfully!");
+      const newPage = { components };
+
+      // Send only the new page to append on server
+      await saveUserConfig({ userEmail, config: newPage }).unwrap();
+
+      setComponents(["Navbar", "Hero"]);
+      toast.success("Your page has been saved successfully!");
       refetch();
     } catch (error) {
-      console.log("Error saving config:", error);
-      toast.error("Failed to save configuration. Please try again.");
+      console.error("Error saving config:", error);
+      toast.error("Failed to save your page. Please try again.");
     }
   };
 
@@ -112,12 +114,11 @@ function BuilderEditor() {
           </ul>
         </div>
 
-        {/* Save button */}
         <div className="pt-2 flex justify-end">
           <button
-            className="px-4 py-2 bg-black border text-white rounded hover:bg-white hover:text-black font-bold cursor-pointer"
             onClick={handleSave}
             disabled={saving}
+            className="px-4 py-2 bg-black border text-white rounded hover:bg-white hover:text-black font-bold cursor-pointer"
           >
             {saving ? "Saving..." : "Save"}
           </button>

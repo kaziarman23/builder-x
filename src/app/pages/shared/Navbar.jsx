@@ -50,7 +50,7 @@ function Navbar() {
             </Link>
             <Link to="/mySites">
               <button className="px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
-                Sites
+                WebSites
               </button>
             </Link>
             {userEmail ? (

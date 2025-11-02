@@ -11,7 +11,7 @@ const configApi = baseApi.injectEndpoints({
       query: ({ userEmail, config }) => ({
         url: "/api/config/save",
         method: "POST",
-        body: { user: userEmail, config },
+        body: { userEmail, config },
       }),
       invalidatesTags: ["Config"],
     }),
