@@ -31,7 +31,7 @@ const Login = () => {
         })
       ).unwrap();
 
-      console.log("Login Success:", result);
+      // console.log("Login Success:", result);
 
       toast.success(`Welcome back, ${result.userName || "User"}!`);
       reset();

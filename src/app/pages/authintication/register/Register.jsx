@@ -35,8 +35,7 @@ function Register() {
     };
 
     try {
-      const result = await dispatch(createUser(userData)).unwrap();
-      console.log(result);
+      await dispatch(createUser(userData)).unwrap();
 
       // Save to database
       await addUser({

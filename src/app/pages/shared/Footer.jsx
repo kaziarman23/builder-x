@@ -24,21 +24,6 @@ function Footer() {
               ideas, and innovative designs.
             </p>
           </div>
-
-          {/* Navigation Links */}
-          <div className="md:w-2/3 flex flex-col items-end">
-            <div className="flex flex-col md:flex-row gap-6 mb-4 md:mb-0">
-              <a href="/" className="hover:text-indigo-600 transition">
-                Home
-              </a>
-              <a href="/about" className="hover:text-indigo-600 transition">
-                About
-              </a>
-              <a href="/register" className="hover:text-indigo-600 transition">
-                Register
-              </a>
-            </div>
-          </div>
         </div>
 
         {/* Divider */}

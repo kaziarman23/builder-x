@@ -1,11 +1,29 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutUser } from "../../redux/features/userSlice";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  // redux
+  const { userEmail } = useSelector((state) => state.userSlice);
 
+  // hooks
+  const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // handle logout
+  const handleLogout = () => {
+    signOut(auth);
+    dispatch(logoutUser());
+    navigate("/");
+    toast.success("Logout Successfully");
+  };
 
   return (
     <nav className="bg-black text-white border-b border-white shadow-md block w-full">
@@ -13,22 +31,37 @@ function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/">
-            <h1 className="text-2xl font-bold hover:text-indigo-600">
+            <h1 className="text-2xl font-bold hover:text-indigo-600 transition cursor-pointer">
               Builder X
             </h1>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
-            <a href="/" className="hover:text-indigo-600 transition">
-              Home
-            </a>
-            <a href="/about" className="hover:text-indigo-600 transition">
-              About
-            </a>
-            <a href="/register" className="hover:text-indigo-600 transition">
-              Register
-            </a>
+          <div className="hidden md:flex space-x-4">
+            <Link to="/">
+              <button className="px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+                Home
+              </button>
+            </Link>
+            <Link to="/about">
+              <button className="px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+                About
+              </button>
+            </Link>
+            {userEmail ? (
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-4 py-2 rounded-lg hover:text-red-600 transition cursor-pointer font-medium"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/register" onClick={() => setIsOpen(false)}>
+                <button className="w-full text-left px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+                  Register
+                </button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Hamburger */}
@@ -43,15 +76,31 @@ function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-black text-white px-4 py-4 space-y-2">
-          <a href="/" className="block hover:text-indigo-600 transition">
-            Home
-          </a>
-          <a href="/about" className="block hover:text-indigo-600 transition">
-            About
-          </a>
-          <a href="/contact" className="block hover:text-indigo-600 transition">
-            Contact
-          </a>
+          <Link to="/" onClick={() => setIsOpen(false)}>
+            <button className="w-full text-left px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+              Home
+            </button>
+          </Link>
+          <Link to="/about" onClick={() => setIsOpen(false)}>
+            <button className="w-full text-left px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+              About
+            </button>
+          </Link>
+
+          {userEmail ? (
+            <button
+              onClick={handleLogout}
+              className="w-full text-left px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/register" onClick={() => setIsOpen(false)}>
+              <button className="w-full text-left px-4 py-2 rounded-lg hover:text-indigo-600 transition cursor-pointer font-medium">
+                Register
+              </button>
+            </Link>
+          )}
         </div>
       )}
     </nav>

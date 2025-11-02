@@ -3,12 +3,12 @@ import baseApi from "./baseApi";
 const usersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => "/users",
+      query: () => "/api/users",
       providesTags: ["Users"],
     }),
     addUser: builder.mutation({
       query: (user) => ({
-        url: "/users",
+        url: "/api/users",
         method: "POST",
         body: user,
       }),
@@ -16,7 +16,7 @@ const usersApi = baseApi.injectEndpoints({
     }),
     updateUserProfile: builder.mutation({
       query: (userInfo) => ({
-        url: "/users",
+        url: "/api/users",
         method: "PATCH",
         body: userInfo,
       }),
@@ -24,7 +24,7 @@ const usersApi = baseApi.injectEndpoints({
     }),
     deleteUser: builder.mutation({
       query: (id) => ({
-        url: `/users/${id}`,
+        url: `/api/users/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Users"],
