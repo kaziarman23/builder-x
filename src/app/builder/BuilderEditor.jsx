@@ -38,7 +38,6 @@ function BuilderEditor() {
     const { source, destination, draggableId } = result;
     if (!destination) return;
 
-    // Dragging from Library to Page Structure
     if (
       source.droppableId === "library" &&
       destination.droppableId === "page-structure"
@@ -52,7 +51,6 @@ function BuilderEditor() {
       return;
     }
 
-    // Reordering Page Structure items
     if (
       source.droppableId === "page-structure" &&
       destination.droppableId === "page-structure"
@@ -67,12 +65,12 @@ function BuilderEditor() {
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <div className="h-full grid grid-cols-3 gap-4 p-4">
+      <div className="h-full grid grid-cols-1 md:grid-cols-3 gap-4 ">
         {/* Component Library */}
         <Droppable droppableId="library" isDropDisabled={true}>
           {(provided) => (
             <div
-              className="col-span-1 border rounded-lg overflow-auto p-4"
+              className="border rounded-lg overflow-auto p-4"
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -117,7 +115,7 @@ function BuilderEditor() {
         <Droppable droppableId="page-structure">
           {(provided) => (
             <div
-              className="col-span-2 border rounded-lg p-2 flex flex-col"
+              className="border rounded-lg p-2 flex flex-col md:col-span-2"
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -162,9 +160,9 @@ function BuilderEditor() {
         </Droppable>
 
         {/* Live Preview */}
-        <div className="col-span-3 border rounded-lg p-2">
+        <div className="border rounded-lg p-2 md:col-span-3">
           <h3 className="font-semibold mb-2">Live Preview</h3>
-          <div style={{ height: "70vh" }}>
+          <div className="h-[50vh] md:h-[70vh] overflow-auto">
             <LivePreview components={components} />
           </div>
         </div>

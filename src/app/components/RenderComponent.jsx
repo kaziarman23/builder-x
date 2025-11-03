@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import toasts from "../components/Notifications";
 
 function RenderComponent({ type }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { toastInvalidLink } = toasts;
+
   switch (type) {
     case "Navbar": {
       const toggleMenu = () => setIsOpen((prev) => !prev);
@@ -61,14 +64,17 @@ function RenderComponent({ type }) {
     case "Hero":
       return (
         <section className="relative p-2 sm:p-4 md:p-6 rounded-lg text-black bg-white shadow-lg flex flex-col justify-center items-start space-y-2 sm:space-y-3 w-full">
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug truncate">
+          <h1 className="text-xs sm:text-2xl md:text-3xl font-extrabold leading-snug truncate">
             Build Your Platform Easily
           </h1>
           <p className="text-xs sm:text-sm md:text-base max-w-full sm:max-w-xs truncate">
             Drag and drop components to design your custom online marketplace or
             course platform without coding.
           </p>
-          <button className="px-2 sm:px-3 py-1 sm:py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 cursor-pointer text-xs sm:text-sm">
+          <button
+            onClick={toastInvalidLink}
+            className="px-2 sm:px-3 py-1 sm:py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 cursor-pointer text-xs sm:text-sm"
+          >
             Get Started
           </button>
         </section>
@@ -80,7 +86,10 @@ function RenderComponent({ type }) {
           <span className="font-semibold text-xs sm:text-sm truncate">
             Special Offer: 50% off all courses!
           </span>
-          <button className="px-2 sm:px-3 py-1 sm:py-2 bg-white text-black font-bold rounded hover:bg-blue-600 cursor-pointer text-xs sm:text-sm mt-1 sm:mt-0">
+          <button
+            onClick={toastInvalidLink}
+            className="px-2 sm:px-3 py-1 sm:py-2 bg-white text-black font-bold rounded hover:bg-blue-600 cursor-pointer text-xs sm:text-sm mt-1 sm:mt-0"
+          >
             Enroll Now
           </button>
         </div>
@@ -95,7 +104,10 @@ function RenderComponent({ type }) {
           <p className="text-gray-600 text-xs sm:text-sm truncate">
             Learn the basics of React and build your first web app.
           </p>
-          <button className="px-2 sm:px-3 py-1 sm:py-2 bg-blue-500 text-white font-semibold rounded-lg cursor-pointer hover:bg-blue-600 text-xs sm:text-sm">
+          <button
+            onClick={toastInvalidLink}
+            className="px-2 sm:px-3 py-1 sm:py-2 bg-blue-500 text-white font-semibold rounded-lg cursor-pointer hover:bg-blue-600 text-xs sm:text-sm"
+          >
             Add to Cart
           </button>
         </div>
@@ -115,7 +127,10 @@ function RenderComponent({ type }) {
               <p className="text-gray-500 text-xs sm:text-sm truncate">
                 High quality course content
               </p>
-              <button className="mt-1 px-2 sm:px-3 py-1 sm:py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-xs sm:text-sm">
+              <button
+                onClick={toastInvalidLink}
+                className="mt-1 px-2 sm:px-3 py-1 sm:py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-xs sm:text-sm"
+              >
                 Enroll
               </button>
             </div>

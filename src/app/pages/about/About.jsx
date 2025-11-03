@@ -4,34 +4,34 @@ function About() {
   const { toastInvalidLink } = toast;
 
   return (
-    <div className="p-8 w-full min-h-screen bg-black text-white flex flex-col items-center">
-      <div className="max-w-7xl w-full space-y-16">
+    <div className="p-4 md:p-8 w-full min-h-screen bg-black text-white flex flex-col items-center">
+      <div className="w-11/12 space-y-16">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-5xl font-extrabold text-indigo-600 mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-indigo-600 mb-4">
             About Builder X
           </h1>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+          <p className="text-gray-300 text-base sm:text-lg md:text-lg max-w-3xl mx-auto">
             Builder X is your all-in-one platform to create, customize, and
             launch stunning online platforms — no coding required.
           </p>
         </div>
 
         {/* Card Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-5">
           {/* What We Do */}
-          <div className="bg-linear-to-b from-gray-900 to-black p-8 rounded-2xl border border-gray-800 shadow-lg hover:shadow-indigo-700/30 transition-transform duration-300 hover:-translate-y-2">
-            <h2 className="text-3xl font-bold mb-4 text-indigo-500">
+          <div className="bg-linear-to-b from-gray-900 to-black p-6 sm:p-8 rounded-2xl border border-gray-800 shadow-lg hover:shadow-indigo-700/30 transition-transform duration-300 hover:-translate-y-1">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-indigo-500">
               What We Do
             </h2>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4 text-sm sm:text-base">
               We empower creators and small businesses to{" "}
               <span className="text-indigo-400 font-semibold">
                 launch their online platforms without code
               </span>
               . Builder X offers all the essential building blocks you need.
             </p>
-            <ul className="list-disc ml-6 space-y-2 text-gray-300">
+            <ul className="list-disc ml-4 sm:ml-6 space-y-1 sm:space-y-2 text-gray-300 text-sm sm:text-base">
               <li>Responsive Navbar & Hero sections</li>
               <li>Banners for promotions and announcements</li>
               <li>Course or product listing sections</li>
@@ -41,11 +41,11 @@ function About() {
           </div>
 
           {/* How We Do */}
-          <div className="bg-linear-to-b from-gray-900 to-black p-8 rounded-2xl border border-gray-800 shadow-lg hover:shadow-indigo-700/30 transition-transform duration-300 hover:-translate-y-2">
-            <h2 className="text-3xl font-bold mb-4 text-indigo-500">
+          <div className="bg-linear-to-b from-gray-900 to-black p-6 sm:p-8 rounded-2xl border border-gray-800 shadow-lg hover:shadow-indigo-700/30 transition-transform duration-300 hover:-translate-y-1">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-indigo-500">
               How We Do It
             </h2>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-300 mb-2 text-sm sm:text-base">
               Builder X uses a{" "}
               <span className="text-indigo-400 font-semibold">
                 no-code visual editor
@@ -53,7 +53,7 @@ function About() {
               where you can drag, drop, and arrange components. Instantly
               preview your design changes as you build your dream platform.
             </p>
-            <p className="text-gray-400">
+            <p className="text-gray-400 text-sm sm:text-base">
               Our infrastructure ensures top-notch security and performance,
               letting you focus entirely on your creativity while Builder X
               handles the complexity under the hood.
@@ -61,15 +61,15 @@ function About() {
           </div>
 
           {/* What Users Can Do */}
-          <div className="bg-linear-to-b from-gray-900 to-black p-8 rounded-2xl border border-gray-800 shadow-lg hover:shadow-indigo-700/30 transition-transform duration-300 hover:-translate-y-2">
-            <h2 className="text-3xl font-bold mb-4 text-indigo-500">
+          <div className="bg-linear-to-b from-gray-900 to-black p-6 sm:p-8 rounded-2xl border border-gray-800 shadow-lg hover:shadow-indigo-700/30 transition-transform duration-300 hover:-translate-y-1">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-indigo-500">
               What You Can Do
             </h2>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-300 mb-2 text-sm sm:text-base">
               As a Builder X user, you have full control over your platform —
               from layout to functionality.
             </p>
-            <ul className="list-disc ml-6 space-y-2 text-gray-300">
+            <ul className="list-disc ml-4 sm:ml-6 space-y-1 sm:space-y-2 text-gray-300 text-sm sm:text-base">
               <li>
                 Create your own{" "}
                 <span className="text-indigo-400 font-semibold">
@@ -82,20 +82,20 @@ function About() {
               <li>Save, edit, and publish anytime</li>
               <li>Launch and manage your business effortlessly</li>
             </ul>
-            <p className="mt-4 text-gray-400">
+            <p className="mt-2 text-gray-400 text-sm sm:text-base">
               Builder X helps you focus on your vision — we handle the tech.
             </p>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-10">
-          <p className="text-gray-400 mb-4 text-lg">
-            Ready to start building with Builder X Club ?
+        <div className="text-center mt-6 sm:mt-10">
+          <p className="text-gray-400 mb-4 text-base sm:text-lg">
+            Ready to start building with Builder X Club?
           </p>
           <button
             onClick={toastInvalidLink}
-            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 cursor-pointer px-8 rounded-xl transition"
+            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-xl transition text-sm sm:text-base"
           >
             Join Now
           </button>
