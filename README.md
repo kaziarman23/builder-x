@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-live here: [Live Link]()
+live here: [Live Link](https://builder-x-delta.vercel.app)
 
 ---
 
