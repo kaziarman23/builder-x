@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiCheckCircle, BiHide, BiShow } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { useAddUserMutation } from "../../../redux/features/api/usersApi";
@@ -179,12 +179,12 @@ function Register() {
 
           <p className="mt-6 text-sm text-gray-500 text-center">
             Already have an account?{" "}
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="text-indigo-600 font-medium hover:underline"
             >
               Login
-            </a>
+            </Link>
           </p>
         </div>
       </div>

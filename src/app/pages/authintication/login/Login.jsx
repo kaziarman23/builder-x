@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { BiCheckCircle, BiHide, BiShow } from "react-icons/bi";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { loginUser } from "../../../redux/features/userSlice";
@@ -119,12 +119,12 @@ const Login = () => {
 
           <p className="mt-6 text-sm text-gray-400 text-center">
             Don't have an account?{" "}
-            <a
-              href="/register"
+            <Link
+              to="/register"
               className="text-indigo-500 font-medium hover:underline"
             >
               Register
-            </a>
+            </Link>
           </p>
         </div>
 
