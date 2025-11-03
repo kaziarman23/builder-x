@@ -8,16 +8,29 @@ const configApi = baseApi.injectEndpoints({
     }),
 
     saveUserConfig: builder.mutation({
-      query: ({ userEmail, config }) => ({
+      query: ({ userEmail, config, siteId }) => ({
         url: "/api/config/save",
         method: "POST",
-        body: { userEmail, config },
+        body: { userEmail, config, siteId },
+      }),
+      invalidatesTags: ["Config"],
+    }),
+
+    deleteUserConfig: builder.mutation({
+      query: ({ userEmail, siteId }) => ({
+        url: "/api/config/delete",
+        method: "DELETE",
+        body: { userEmail, siteId },
       }),
       invalidatesTags: ["Config"],
     }),
   }),
 });
 
-export const { useGetUserConfigQuery, useSaveUserConfigMutation } = configApi;
+export const {
+  useGetUserConfigQuery,
+  useSaveUserConfigMutation,
+  useDeleteUserConfigMutation,
+} = configApi;
 
 export default configApi;

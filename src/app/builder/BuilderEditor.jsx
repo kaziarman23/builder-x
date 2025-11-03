@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ComponentLibrary from "./ComponentLibrary";
 import LivePreview from "./LivePreview";
 import {
@@ -7,31 +7,21 @@ import {
   FaRegTrashAlt,
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import {
-  useGetUserConfigQuery,
-  useSaveUserConfigMutation,
-} from "../redux/features/api/configApi";
+import { useSaveUserConfigMutation } from "../redux/features/api/configApi";
 import toast from "react-hot-toast";
+import { v4 as uuid } from "uuid";
 
 function BuilderEditor() {
   const [components, setComponents] = useState(["Navbar", "Hero"]);
   const { userEmail } = useSelector((state) => state.userSlice);
 
-  const { data: userConfig, refetch } = useGetUserConfigQuery(userEmail);
   const [saveUserConfig, { isLoading: saving }] = useSaveUserConfigMutation();
-
-  // Load the last saved page if exists
-  useEffect(() => {
-    if (Array.isArray(userConfig?.config) && userConfig.config.length > 0) {
-      const lastPage = userConfig.config[userConfig.config.length - 1];
-      if (lastPage?.components) setComponents(lastPage.components);
-    }
-  }, [userConfig]);
 
   const add = (c) => setComponents((prev) => [...prev, c]);
   const remove = (idx) =>
     setComponents((prev) => prev.filter((_, i) => i !== idx));
 
+  // This Two is from Chatgpt
   const moveUp = (idx) => {
     if (idx === 0) return;
     setComponents((prev) => {
@@ -57,14 +47,13 @@ function BuilderEditor() {
     }
 
     try {
-      const newPage = { components };
+      const siteId = uuid();
+      const newPage = { components, siteId };
 
-      // Send only the new page to append on server
       await saveUserConfig({ userEmail, config: newPage }).unwrap();
 
       setComponents(["Navbar", "Hero"]);
       toast.success("Your page has been saved successfully!");
-      refetch();
     } catch (error) {
       console.error("Error saving config:", error);
       toast.error("Failed to save your page. Please try again.");
