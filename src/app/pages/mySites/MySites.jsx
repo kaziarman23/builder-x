@@ -7,6 +7,7 @@ import LivePreview from "../../builder/LivePreview";
 import customToast from "../../components/Notifications";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import Loading from "../../components/Loading";
 
 const MySites = () => {
   // Hooks
@@ -29,13 +30,7 @@ const MySites = () => {
 
   // handel Loading
   if (isLoading) {
-    return (
-      <div className="w-full h-screen bg-black flex justify-center items-center">
-        <h1 className="font-bold text-3xl text-white">
-          Loading your saved websites...
-        </h1>
-      </div>
-    );
+    return <Loading message={"Loading your website Data"} />;
   }
 
   // handel Error
