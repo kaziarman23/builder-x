@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { COMPONENTS } from "./ComponentLibrary";
+import COMPONENTS from "./ComponentLibrary";
 import LivePreview from "./LivePreview";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -96,6 +96,14 @@ function BuilderEditor() {
                         <div className="font-medium">{c.title}</div>
                         <div className="text-sm text-gray-500">{c.example}</div>
                       </div>
+                      <button
+                        className="px-3 py-1 bg-black border text-white hover:bg-white hover:text-black font-bold rounded-xl cursor-pointer"
+                        onClick={() =>
+                          setComponents((prev) => [...prev, c.key])
+                        }
+                      >
+                        Add
+                      </button>
                     </div>
                   )}
                 </Draggable>
